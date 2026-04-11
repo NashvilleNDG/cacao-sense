@@ -1,5 +1,5 @@
 {% liquid
-  assign default_logo = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/67f80ca1b_image.png'
+  assign default_logo = 'logo-transparent.png' | asset_url
   assign logo = section.settings.logo
   assign url_story = '/pages/our-story'
   if pages['our-story'] != blank

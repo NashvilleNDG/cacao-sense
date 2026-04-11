@@ -1,7 +1,7 @@
 {% liquid
   assign logo = section.settings.logo
   assign logo_alt = section.settings.logo_alt | default: shop.name
-  assign default_logo = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/67f80ca1b_image.png'
+  assign default_logo = 'logo-transparent.png' | asset_url
 %}
 
 <header class="ts-header" data-ts-header>
@@ -11,7 +11,7 @@
         {% if logo != blank %}
           <img src="{{ logo | image_url: width: 400 }}" alt="{{ logo_alt | escape }}" width="{{ logo.width }}" height="{{ logo.height }}">
         {% else %}
-          <img src="{{ default_logo }}" alt="{{ logo_alt | escape }}" width="200" height="56" loading="eager">
+          <img src="{{ default_logo }}" class="ts-logo-default" alt="{{ logo_alt | escape }}" width="200" height="56" loading="eager">
         {% endif %}
       </a>
 

@@ -132,6 +132,11 @@ body.ts-body {
   filter: brightness(0) invert(1);
 }
 
+/* Theme default logo (cream PNG): dark enough for light header when not homepage hero */
+body:not(.template-index) .ts-header .ts-header__logo .ts-logo-default {
+  filter: brightness(0.24) contrast(1.06);
+}
+
 .ts-header__nav-desktop {
   display: none;
   align-items: center;
