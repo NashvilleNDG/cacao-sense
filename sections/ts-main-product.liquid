@@ -326,12 +326,16 @@
     {
       "type": "checkbox",
       "id": "badge_without_tag",
-      "label": "Show badge on all products (without Best seller tag)",
+      "label": "Show badge without Best seller tag",
       "default": false
     },
     {
       "type": "header",
-      "content": "Rating (optional metafields: custom.rating, custom.review_count)"
+      "content": "Rating"
+    },
+    {
+      "type": "paragraph",
+      "content": "Uses custom.rating and review_count when set."
     },
     {
       "type": "checkbox",
@@ -342,7 +346,7 @@
     {
       "type": "text",
       "id": "rating_value",
-      "label": "Rating (1–5)",
+      "label": "Rating (1-5)",
       "default": "4.9"
     },
     {
@@ -353,11 +357,11 @@
     },
     {
       "type": "header",
-      "content": "Attribute cards (metafields override)"
+      "content": "Attributes"
     },
     {
       "type": "paragraph",
-      "content": "Create metafields: custom.origin and custom.available_sizes (single line text), or use fallbacks below."
+      "content": "Metafields custom.origin and custom.available_sizes."
     },
     {
       "type": "text",
@@ -388,19 +392,19 @@
       "type": "textarea",
       "id": "trust_1",
       "label": "Trust line 1",
-      "default": "100% Pure & Natural — No additives or preservatives"
+      "default": "100% Pure & Natural - No additives or preservatives"
     },
     {
       "type": "textarea",
       "id": "trust_2",
       "label": "Trust line 2",
-      "default": "Single-Origin — Ethically sourced from certified farms"
+      "default": "Single-Origin - Ethically sourced from certified farms"
     },
     {
       "type": "textarea",
       "id": "trust_3",
       "label": "Trust line 3",
-      "default": "Free Shipping — On orders over $50"
+      "default": "Free Shipping - On orders over $50"
     }
   ]
 }
