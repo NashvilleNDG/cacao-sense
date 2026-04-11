@@ -1,0 +1,213 @@
+{% liquid
+  assign default_logo = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/67f80ca1b_image.png'
+  assign logo = section.settings.logo
+  assign url_story = '/pages/our-story'
+  if pages['our-story'] != blank
+    assign url_story = pages['our-story'].url
+  endif
+  assign url_contact = '/pages/contact'
+  if pages['contact'] != blank
+    assign url_contact = pages['contact'].url
+  endif
+%}
+
+<footer class="ts-footer">
+  <div class="ts-page-width">
+    <div class="ts-footer__grid">
+      <div class="ts-footer__brand">
+        {% if logo != blank %}
+          <img src="{{ logo | image_url: width: 400 }}" alt="{{ section.settings.logo_alt | escape }}" width="{{ logo.width }}" height="{{ logo.height }}" loading="lazy">
+        {% else %}
+          <img src="{{ default_logo }}" alt="{{ section.settings.logo_alt | escape }}" width="200" height="80" loading="lazy">
+        {% endif %}
+        <p class="ts-footer__tagline">{{ section.settings.tagline }}</p>
+        <div class="ts-footer__social">
+          {% if section.settings.social_instagram != blank %}
+            <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"></path>
+              </svg>
+            </a>
+          {% endif %}
+          {% if section.settings.social_facebook != blank %}
+            <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+          {% endif %}
+          {% if section.settings.social_twitter != blank %}
+            <a href="{{ section.settings.social_twitter }}" target="_blank" rel="noopener" aria-label="X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4l16 16M20 4 4 20"></path>
+              </svg>
+            </a>
+          {% endif %}
+          {% if section.settings.social_youtube != blank %}
+            <a href="{{ section.settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if section.settings.menu_shop != blank and linklists[section.settings.menu_shop].links.size > 0 %}
+        <div class="ts-footer__col">
+          <h4>{{ linklists[section.settings.menu_shop].title }}</h4>
+          <ul>
+            {% for link in linklists[section.settings.menu_shop].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% else %}
+        <div class="ts-footer__col">
+          <h4>{{ 'sections.footer.shop' | t }}</h4>
+          <ul>
+            <li><a href="{{ routes.all_products_collection_url }}">{{ 'sections.footer.all_products' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_beans' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_nibs' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_powder' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_butter' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_wafers' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_tea' | t }}</a></li>
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if section.settings.menu_company != blank and linklists[section.settings.menu_company].links.size > 0 %}
+        <div class="ts-footer__col">
+          <h4>{{ linklists[section.settings.menu_company].title }}</h4>
+          <ul>
+            {% for link in linklists[section.settings.menu_company].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% else %}
+        <div class="ts-footer__col">
+          <h4>{{ 'sections.footer.quick_links' | t }}</h4>
+          <ul>
+            <li><a href="{{ routes.root_url }}">{{ 'sections.header.home' | t }}</a></li>
+            <li><a href="{{ url_story }}">{{ 'sections.header.story' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.header.collections' | t }}</a></li>
+            <li><a href="{{ url_contact }}">{{ 'sections.header.contact' | t }}</a></li>
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if section.settings.menu_support != blank and linklists[section.settings.menu_support].links.size > 0 %}
+        <div class="ts-footer__col">
+          <h4>{{ linklists[section.settings.menu_support].title }}</h4>
+          <ul>
+            {% for link in linklists[section.settings.menu_support].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% else %}
+        <div class="ts-footer__col">
+          <h4>{{ 'sections.footer.support' | t }}</h4>
+          <ul>
+            <li><a href="{{ url_contact }}">{{ 'sections.footer.contact_us' | t }}</a></li>
+            <li><a href="{{ url_contact }}#faq">{{ 'sections.footer.faq' | t }}</a></li>
+            <li><a href="{{ routes.cart_url }}">{{ 'general.cart' | t }}</a></li>
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ts-footer__bottom">
+      <p class="ts-footer__copy">&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name }}. {{ 'sections.footer.rights' | t }}</p>
+      <div class="ts-footer__legal">
+        {% if section.settings.privacy_policy != blank %}
+          <a href="{{ section.settings.privacy_policy }}">{{ 'sections.footer.privacy' | t }}</a>
+        {% endif %}
+        {% if section.settings.terms != blank %}
+          <a href="{{ section.settings.terms }}">{{ 'sections.footer.terms' | t }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-ts-footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "True Senses"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Single-origin cacao products, pure & extraordinary. From sustainable farms to your table."
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "X / Twitter URL"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_shop",
+      "label": "Shop menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_company",
+      "label": "Company menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_support",
+      "label": "Support menu"
+    },
+    {
+      "type": "text",
+      "id": "copyright_name",
+      "label": "Copyright name",
+      "default": "Cacao Senses"
+    },
+    {
+      "type": "url",
+      "id": "privacy_policy",
+      "label": "Privacy policy URL"
+    },
+    {
+      "type": "url",
+      "id": "terms",
+      "label": "Terms of service URL"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,107 @@
+{% liquid
+  assign coll = section.settings.collection
+  assign limit = section.settings.products_to_show | default: 6
+%}
+
+<section id="products" class="ts-products" data-ts-products>
+  <div class="ts-products__glow-t" aria-hidden="true"></div>
+  <div class="ts-products__glow-b" aria-hidden="true"></div>
+  <div class="ts-page-width">
+    <div class="ts-products__head">
+      <div>
+        <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+        <h2 class="ts-products__title">
+          {{ section.settings.title_line_1 }}
+          <br>
+          <em>{{ section.settings.title_line_2 }}</em>
+        </h2>
+      </div>
+      <div class="ts-products__filters" role="tablist" aria-label="{{ 'sections.featured_products.filters' | t }}">
+        <button type="button" class="ts-filter-btn is-active" data-ts-filter-btn="all">{{ 'sections.featured_products.filter_all' | t }}</button>
+        <button type="button" class="ts-filter-btn" data-ts-filter-btn="butter">{{ 'sections.featured_products.filter_butter' | t }}</button>
+        <button type="button" class="ts-filter-btn" data-ts-filter-btn="nibs">{{ 'sections.featured_products.filter_nibs' | t }}</button>
+        <button type="button" class="ts-filter-btn" data-ts-filter-btn="powder">{{ 'sections.featured_products.filter_powder' | t }}</button>
+      </div>
+    </div>
+
+    {% if coll != blank and coll.all_products_count > 0 %}
+      <div class="ts-products__grid">
+        {% for product in coll.products limit: limit %}
+          {% render 'ts-product-card', product: product %}
+        {% endfor %}
+      </div>
+      <div class="ts-products__footer">
+        <a class="ts-btn-outline" href="{{ coll.url }}">
+          {{ section.settings.view_all_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    {% else %}
+      <div class="ts-products__grid">
+        <p style="grid-column:1/-1;text-align:center;color:var(--ts-muted-fg);max-width:32rem;margin:0 auto;">
+          {{ section.settings.empty_message }}
+        </p>
+      </div>
+      <div class="ts-products__footer">
+        <a class="ts-btn-outline" href="{{ routes.all_products_collection_url }}">{{ 'sections.featured_products.browse_catalog' | t }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "tag": "section",
+  "class": "section-ts-products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Our Selection"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1",
+      "default": "Bestselling"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2 (accent)",
+      "default": "Creations"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all label",
+      "default": "View All Products"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_message",
+      "label": "Empty state message",
+      "default": "Choose a collection in the theme editor, or add products to your store. Tag products with Butter, Nibs, and/or Powder (exact wording) to power the category filters."
+    }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}

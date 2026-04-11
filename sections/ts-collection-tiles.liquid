@@ -1,0 +1,194 @@
+{% liquid
+  assign defaults = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/e94b75d44_generated_1b110512.png|https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/404605a42_generated_f918f7f4.png|https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/b9c4ef540_generated_8bc9c463.png'
+  assign default_urls = defaults | split: '|'
+%}
+
+<section id="ts-collections" class="ts-bento">
+  <div class="ts-page-width">
+    <div class="ts-bento__head">
+      <div>
+        <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+        <h2 class="ts-products__title">
+          {{ section.settings.title_prefix }}
+          <em>{{ section.settings.title_accent }}</em>
+        </h2>
+      </div>
+      <p class="ts-bento__sub" style="font-size:0.9375rem;color:var(--ts-muted-fg);max-width:20rem;margin:0;">
+        {{ section.settings.subtitle }}
+      </p>
+    </div>
+
+    <div class="ts-bento__grid{% if section.blocks.size == 2 %} ts-bento__grid--duo{% endif %}">
+      {% for block in section.blocks %}
+        {% if block.type == 'tile' %}
+          {% liquid
+            assign img = block.settings.image
+            assign fallback = default_urls[forloop.index0] | default: default_urls[0]
+            assign href = block.settings.link | default: routes.all_products_collection_url
+            assign anchor_id = block.settings.anchor_id | strip
+          %}
+          <a
+            href="{{ href }}"
+            class="ts-bento__item {% if block.settings.large %}ts-bento__item--hero{% endif %}"
+            {% if anchor_id != blank %}id="{{ anchor_id }}"{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            {% if img != blank %}
+              <img
+                src="{{ img | image_url: width: 1200 }}"
+                alt="{{ img.alt | default: block.settings.title | escape }}"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                loading="lazy"
+              >
+            {% else %}
+              <img src="{{ fallback }}" alt="{{ block.settings.title | escape }}" width="800" height="600" loading="lazy">
+            {% endif %}
+            <span class="ts-bento__tag">{{ block.settings.tag }}</span>
+            <span class="ts-bento__arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17 17 7M7 7h10v10"></path>
+              </svg>
+            </span>
+            <div class="ts-bento__content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.subtitle }}</p>
+              <div class="ts-bento__cta">
+                <span>{{ block.settings.cta_label }}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M7 17 17 7M7 7h10v10"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection tiles",
+  "tag": "section",
+  "class": "section-ts-bento",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "title_prefix",
+      "label": "Title (before accent)",
+      "default": "Our "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title accent",
+      "default": "Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Butter, nibs and powder — three ways to enjoy the same careful sourcing and craft."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "large",
+          "label": "Large tile (2x2 on desktop)",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Intense & Bold"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Dark Origins"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Single-origin dark chocolate, 70–90% cocoa"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "HTML id (anchor link target)",
+          "info": "Optional. Match header anchors, e.g. collection-butter",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection tiles",
+      "blocks": [
+        {
+          "type": "tile",
+          "settings": {
+            "large": true,
+            "anchor_id": "collection-butter",
+            "tag": "Silky & rich",
+            "title": "Cacao Butter",
+            "subtitle": "Pure pressed cacao fat — chocolate making, skincare & baking"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "anchor_id": "collection-nibs",
+            "tag": "Whole bean",
+            "title": "Cacao Nibs",
+            "subtitle": "Roasted pieces for toppings, trail mix & snacking"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "anchor_id": "collection-powder",
+            "tag": "Pantry staple",
+            "title": "Cacao Powder",
+            "subtitle": "Natural & Dutch-process — drinks, brownies & smoothies"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

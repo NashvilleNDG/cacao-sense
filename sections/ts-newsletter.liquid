@@ -1,0 +1,110 @@
+<section class="ts-newsletter-wrap">
+  <div class="ts-page-width">
+    <div class="ts-newsletter">
+      <div class="ts-newsletter__glow-t" aria-hidden="true"></div>
+      <div class="ts-newsletter__glow-b" aria-hidden="true"></div>
+      <div class="ts-newsletter__inner">
+        <div class="ts-newsletter__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+          </svg>
+        </div>
+        <p class="ts-hero__eyebrow" style="margin-bottom:1rem;">{{ section.settings.kicker }}</p>
+        <h2 class="ts-products__title" style="color:#fff;text-align:center;margin-bottom:1rem;">
+          {{ section.settings.title_plain }}
+          <em class="ts-text-gradient-gold">{{ section.settings.title_accent }}</em>
+        </h2>
+        <p class="ts-newsletter__lead" style="color:rgba(255,255,255,0.65);line-height:1.6;margin:0 auto 2.5rem;max-width:32rem;">
+          {{ section.settings.text }}
+        </p>
+
+        {% form 'customer', id: 'ts-newsletter-form', class: 'ts-newsletter__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter, prospect">
+          {% if form.errors %}
+            <div class="ts-newsletter__errors">{{ form.errors | default_errors }}</div>
+          {% endif %}
+          {% if form.posted_successfully? %}
+            <p class="ts-newsletter__success" role="status">{{ section.settings.success_message }}</p>
+          {% endif %}
+          <input
+            type="email"
+            name="contact[email]"
+            class="ts-newsletter__input"
+            value="{{ form.email }}"
+            placeholder="{{ section.settings.placeholder }}"
+            required
+            autocomplete="email"
+            aria-label="{{ 'sections.newsletter.email_label' | t }}"
+          >
+          <button type="submit" class="ts-newsletter__submit">
+            {{ section.settings.button_label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        {% endform %}
+
+        <p class="ts-newsletter__note">{{ section.settings.note }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section-ts-newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Stay Connected"
+    },
+    {
+      "type": "text",
+      "id": "title_plain",
+      "label": "Title (before accent)",
+      "default": "Join the "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title accent",
+      "default": "Inner Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Get 10% off your first order, exclusive drops, and stories from the world of premium cocoa."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Fine print",
+      "default": "No spam, ever. Unsubscribe anytime. Join 50,000+ cocoa lovers."
+    }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

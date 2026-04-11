@@ -1,0 +1,121 @@
+<section class="ts-how-made" id="how-its-made">
+  <div class="ts-how-made__glow" aria-hidden="true"></div>
+  <div class="ts-page-width">
+    <div class="ts-how-made__head">
+      <p class="ts-how-made__kicker">{{ section.settings.kicker }}</p>
+      <h2 class="ts-how-made__title">
+        {{ section.settings.title_plain }}<em class="ts-text-gradient-gold">{{ section.settings.title_accent }}</em>
+      </h2>
+      {% if section.settings.intro != blank %}
+        <p class="ts-how-made__intro">{{ section.settings.intro }}</p>
+      {% endif %}
+    </div>
+    <div class="ts-how-made__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'step' %}
+          <div class="ts-how-made__card" {{ block.shopify_attributes }}>
+            <div class="ts-how-made__media">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  loading="lazy"
+                >
+              {% elsif block.settings.image_url != blank %}
+                <img src="{{ block.settings.image_url }}" alt="{{ block.settings.title | escape }}" width="600" height="450" loading="lazy">
+              {% endif %}
+              <span class="ts-how-made__step">{{ block.settings.step_number }}</span>
+            </div>
+            <h3 class="ts-how-made__card-title">{{ block.settings.title }}</h3>
+            <p class="ts-how-made__card-desc">{{ block.settings.text }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How it's made",
+  "tag": "section",
+  "class": "section-ts-how-made",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Our Process"
+    },
+    {
+      "type": "text",
+      "id": "title_plain",
+      "label": "Title (plain)",
+      "default": "From Farm to "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title (accent)",
+      "default": "Your Table"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every step is guided by a single principle: zero compromise on purity."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Step description."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL (fallback)",
+          "info": "https URL if no image uploaded"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it's made",
+      "blocks": [
+        { "type": "step", "settings": { "step_number": "01", "title": "Ethically Harvested", "text": "Ripe cacao pods are hand-picked by our farming partners in Ecuador, Ghana & Madagascar at peak perfection.", "image_url": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80" } },
+        { "type": "step", "settings": { "step_number": "02", "title": "Sun-Dried & Fermented", "text": "Beans ferment naturally for 5–7 days then slow-dry in the open sun, developing their complex flavor profile.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/f41d5c108_generated_image.png" } },
+        { "type": "step", "settings": { "step_number": "03", "title": "Stone-Ground 72 Hours", "text": "Using traditional granite millstones, we cold-grind each batch for 72 hours to preserve nutrients and aroma.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/1e4d08862_generated_image.png" } },
+        { "type": "step", "settings": { "step_number": "04", "title": "Packed & Shipped Fresh", "text": "Sealed in nitrogen-flushed bags to lock in freshness, then shipped directly to your door worldwide.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d5ad83e23_generated_image.png" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+<section id="ts-reviews" class="ts-reviews">
+  <div class="ts-page-width">
+    <div class="ts-reviews__intro">
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h2 class="ts-products__title" style="text-align:center;margin-bottom:1rem;">
+        {{ section.settings.title_plain }}
+        <em>{{ section.settings.title_accent }}</em>
+      </h2>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.25rem;flex-wrap:wrap;">
+        {% for i in (1..5) %}
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill:#fbbf24;color:#fbbf24;">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+        {% endfor %}
+        <span style="font-size:0.875rem;color:var(--ts-muted-fg);margin-left:0.5rem;">{{ section.settings.rating_line }}</span>
+      </div>
+    </div>
+
+    <div class="ts-reviews__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'quote' %}
+          <blockquote class="ts-review-card" {{ block.shopify_attributes }}>
+            <div class="ts-review-card__stars" aria-hidden="true">
+              {% assign r = block.settings.rating | default: 5 | plus: 0 %}
+              {% if r > 5 %}
+                {% assign r = 5 %}
+              {% endif %}
+              {% for i in (1..r) %}
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              {% endfor %}
+            </div>
+            <p class="ts-review-card__text">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
+            <footer class="ts-review-card__author">
+              <div class="ts-review-card__avatar ts-review-card__avatar--{{ block.settings.avatar_style }}">
+                {{ block.settings.initials | escape }}
+              </div>
+              <div>
+                <p class="ts-review-card__name">{{ block.settings.name | escape }}</p>
+                <p class="ts-review-card__role">{{ block.settings.role | escape }}</p>
+              </div>
+            </footer>
+          </blockquote>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section-ts-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "title_plain",
+      "label": "Title (before accent)",
+      "default": "What People "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title accent",
+      "default": "Say"
+    },
+    {
+      "type": "text",
+      "id": "rating_line",
+      "label": "Rating line",
+      "default": "4.9 out of 5 from 2,300+ reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "The depth of flavor in their single-origin cocoa is unlike anything I've worked with."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Stars",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Initials",
+          "default": "SL"
+        },
+        {
+          "type": "select",
+          "id": "avatar_style",
+          "label": "Avatar gradient",
+          "options": [
+            { "value": "a", "label": "Amber / orange" },
+            { "value": "b", "label": "Brown / amber" },
+            { "value": "c", "label": "Orange / red" }
+          ],
+          "default": "a"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Sophia Laurent"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / title",
+          "default": "Pastry Chef, Paris"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "The depth of flavor in their single-origin cocoa is unlike anything I've worked with. It transforms every dessert into an experience.",
+            "initials": "SL",
+            "avatar_style": "a",
+            "name": "Sophia Laurent",
+            "role": "Pastry Chef, Paris"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "True Senses has redefined what premium cocoa means. Their commitment to sustainability without sacrificing taste is truly remarkable.",
+            "initials": "JW",
+            "avatar_style": "b",
+            "name": "James Whitfield",
+            "role": "Food Critic"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "I discovered them two years ago and haven't bought cocoa from anywhere else since. The gift boxes are perfect for every occasion.",
+            "initials": "MG",
+            "avatar_style": "c",
+            "name": "Maria Gonzales",
+            "role": "Loyal Customer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

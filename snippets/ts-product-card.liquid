@@ -1,0 +1,131 @@
+{% comment %}
+  Product card. Badge from tags: Best Seller, Butter, Powder, Nibs, New, Popular, Gift (case-insensitive).
+  Category filters use product tags; include Butter, Powder, and/or Nibs for filtering.
+  Optional metafield: custom.rating (number 1-5) for stars.
+{% endcomment %}
+{% liquid
+  assign badge = ''
+  assign badges_lower = ''
+  for tag in product.tags
+    assign tl = tag | downcase | strip
+    assign badges_lower = badges_lower | append: tl | append: ' '
+    if badge == ''
+      if tl == 'best seller'
+        assign badge = 'Best Seller'
+      elsif tl == 'butter'
+        assign badge = 'Butter'
+      elsif tl == 'powder' or tl == 'cacao powder'
+        assign badge = 'Powder'
+      elsif tl == 'nibs'
+        assign badge = 'Nibs'
+      elsif tl == 'whole beans'
+        assign badge = 'Whole Beans'
+      elsif tl == 'tea'
+        assign badge = 'Tea'
+      elsif tl == 'wafers'
+        assign badge = 'Wafers'
+      elsif tl == 'new'
+        assign badge = 'New'
+      elsif tl == 'popular'
+        assign badge = 'Popular'
+      elsif tl == 'gift'
+        assign badge = 'Gift'
+      endif
+    endif
+  endfor
+%}
+{% assign rating = 5 %}
+{% if product.metafields.custom.rating.value != blank %}
+  {% assign rating = product.metafields.custom.rating.value | plus: 0 %}
+{% endif %}
+{% if rating > 5 %}
+  {% assign rating = 5 %}
+{% endif %}
+{% if rating < 1 %}
+  {% assign rating = 5 %}
+{% endif %}
+{% assign img_alt = product.title %}
+{% if product.featured_image %}
+  {% assign img_alt = product.featured_image.alt | default: product.title %}
+{% endif %}
+
+<div
+  class="ts-product-card"
+  data-ts-product-card
+  data-ts-badges="{{ badges_lower | strip }}"
+>
+  <div class="ts-product-card__media">
+    <a href="{{ product.url }}" aria-hidden="true" tabindex="-1">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ img_alt | escape }}"
+          loading="lazy"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+        >
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </a>
+    <div class="ts-product-card__overlay" aria-hidden="true"></div>
+    {% if badge != '' %}
+      <span class="ts-product-card__badge">{{ badge }}</span>
+    {% endif %}
+    <button type="button" class="ts-product-card__wish" aria-label="{{ 'general.wishlist' | t }}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </button>
+    <div class="ts-product-card__atc">
+      {% if product.available %}
+        {% if product.has_only_default_variant %}
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" name="add">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M6 6h15l-1.5 9h-12z"></path>
+                <circle cx="9" cy="20" r="1"></circle>
+                <circle cx="18" cy="20" r="1"></circle>
+                <path d="M6 6 5 3H2"></path>
+              </svg>
+              {{ 'products.add_to_cart' | t }}
+            </button>
+          {% endform %}
+        {% else %}
+          <a href="{{ product.url }}" class="ts-btn ts-btn--primary" style="width:100%;justify-content:center;">
+            {{ 'products.choose_options' | t }}
+          </a>
+        {% endif %}
+      {% else %}
+        <a href="{{ product.url }}" class="ts-btn ts-btn--primary" style="width:100%;justify-content:center;">{{ 'products.view' | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="ts-product-card__body">
+    <div class="ts-product-card__stars" aria-hidden="true">
+      {% for i in (1..5) %}
+        {% if i <= rating %}
+          <svg class="is-full" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        {% else %}
+          <svg class="is-empty" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <h3 class="ts-product-card__name">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <p class="ts-product-card__desc">
+      {{ product.description | strip_html | truncate: 120 }}
+    </p>
+    <div class="ts-product-card__price-row">
+      <span class="ts-product-card__price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="ts-product-card__compare">{{ product.compare_at_price | money }}</span>
+        {% assign save_amount = product.compare_at_price | minus: product.price | money %}
+        <span class="ts-product-card__save">{{ 'products.save' | t: amount: save_amount }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>

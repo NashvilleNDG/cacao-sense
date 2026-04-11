@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "our_story": {
+      "type": "ts-our-story-page",
+      "blocks": {
+        "v1": { "type": "value", "settings": { "title": "Rooted in Guatemala", "text": "Finca El Rosario Quesada — one of the oldest plantation homes in the region with over 200 years of history, near the ancient Mayan park Takalik Abaj." } },
+        "v2": { "type": "value", "settings": { "title": "7 Cacao Varieties", "text": "We cultivate seven different cacao varieties on the same land, allowing for biodiversity, resilience, and a layered flavor spectrum unique to our farm." } },
+        "v3": { "type": "value", "settings": { "title": "Zero Waste Process", "text": "Nothing is wasted. Leftover organic material is returned to the land as natural fertilizer, closing the cycle and nourishing future harvests." } },
+        "v4": { "type": "value", "settings": { "title": "Community Rooted", "text": "Our team comes from the local community — many are direct descendants of Mayan heritage, working in alignment with ancestral agricultural traditions." } },
+        "p1": { "type": "process", "settings": { "step": "01", "title": "Hand Germination", "text": "Each plant is germinated by hand with care and intention." } },
+        "p2": { "type": "process", "settings": { "step": "02", "title": "Individual Monitoring", "text": "Trees are grown and monitored individually throughout their lifecycle." } },
+        "p3": { "type": "process", "settings": { "step": "03", "title": "Hand-Harvested", "text": "Pods are hand-harvested at peak ripeness to ensure optimal flavor." } },
+        "p4": { "type": "process", "settings": { "step": "04", "title": "Manual Sorting", "text": "Fruit is opened and sorted manually, ensuring only the best beans proceed." } },
+        "p5": { "type": "process", "settings": { "step": "05", "title": "Custom Fermentation", "text": "Beans are processed using custom fermentation protocols refined through generations." } }
+      },
+      "block_order": ["v1", "v2", "v3", "v4", "p1", "p2", "p3", "p4", "p5"],
+      "settings": {
+        "intro_title": "Born in the Rainforest of Guatemala",
+        "intro_rte": "<p>Cacao Senses is born in the tropical rainforest of Guatemala, deep in ancestral land located six hours from the city, where nature remains untouched and traditions remain alive. Our farm, <em>Finca El Rosario Quesada</em>, is one of the oldest plantation homes in the region, with more than 200 years of history.</p><p>We are located in the vicinity of the ancient Mayan archaeological park <strong>Takalik Abaj</strong> — one of the earliest and most important ceremonial and trade centers of Mesoamerica.</p>",
+        "cta_link": "/"
+      }
+    }
+  },
+  "order": ["our_story"]
+}

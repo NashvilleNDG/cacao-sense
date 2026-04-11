@@ -1,0 +1,89 @@
+{% liquid
+  assign coll = section.settings.collection
+  assign limit = section.settings.products_to_show | default: 12
+%}
+
+<section id="all-products" class="ts-vbc-all-products">
+  <div class="ts-vbc-all-products__glow" aria-hidden="true"></div>
+  <div class="ts-page-width">
+    <div class="ts-vbc-all-products__head">
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h2 class="ts-products__title">
+        {{ section.settings.title_line_1 }}
+        <em>{{ section.settings.title_line_2 }}</em>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="ts-vbc-all-products__sub">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% if coll != blank and coll.all_products_count > 0 %}
+      <div class="ts-products__grid">
+        {% for product in coll.products limit: limit %}
+          {% render 'ts-product-card', product: product %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="ts-products__grid">
+        <p class="ts-vbc-all-products__empty">
+          {{ section.settings.empty_message }}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product grid (full range)",
+  "tag": "section",
+  "class": "section-ts-vbc-all-products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 24,
+      "step": 1,
+      "label": "Products to show",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Full Range"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1",
+      "default": "Complete Cacao"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2 (accent)",
+      "default": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "From raw whole beans to refined cacao butter — every form of pure cacao you need, all in one place."
+    },
+    {
+      "type": "textarea",
+      "id": "empty_message",
+      "label": "Empty state",
+      "default": "Select a collection in the theme editor (e.g. All products) to show your catalog."
+    }
+  ],
+  "presets": [{ "name": "Product grid (full range)" }]
+}
+{% endschema %}

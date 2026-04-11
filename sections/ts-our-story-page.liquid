@@ -1,0 +1,168 @@
+{% liquid
+  assign hero_img = section.settings.hero_image
+  assign hero_fallback = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/18926a5f2_generated_image.png'
+%}
+
+<div class="ts-os-page">
+  <section class="ts-os-hero">
+    <div class="ts-os-hero__bg">
+      {% if hero_img != blank %}
+        <img src="{{ hero_img | image_url: width: 2000 }}" alt="{{ section.settings.hero_image_alt | escape }}" width="{{ hero_img.width }}" height="{{ hero_img.height }}" loading="eager">
+      {% else %}
+        <img src="{{ hero_fallback }}" alt="" width="1920" height="1080" loading="eager">
+      {% endif %}
+      <div class="ts-os-hero__shade"></div>
+    </div>
+    <div class="ts-os-hero__content ts-page-width">
+      <p class="ts-os-hero__eyebrow">{{ section.settings.hero_eyebrow }}</p>
+      <h1 class="ts-os-hero__title">{{ section.settings.hero_title }}</h1>
+      <p class="ts-os-hero__lead">{{ section.settings.hero_lead }}</p>
+    </div>
+  </section>
+
+  <section class="ts-os-intro ts-page-width">
+    <p class="ts-os-intro__kicker">{{ section.settings.intro_kicker }}</p>
+    <h2 class="ts-os-intro__title">{{ section.settings.intro_title }}</h2>
+    <div class="ts-os-intro__rte rte">{{ section.settings.intro_rte }}</div>
+  </section>
+
+  <section class="ts-os-band">
+    <div class="ts-page-width ts-os-band__inner">
+      <p class="ts-os-band__quote">{{ section.settings.band_quote }}</p>
+      <p class="ts-os-band__sub">{{ section.settings.band_sub }}</p>
+    </div>
+  </section>
+
+  <section class="ts-os-mission">
+    <div class="ts-page-width ts-os-mission__grid">
+      <div class="ts-os-mission__card">
+        <h3 class="ts-os-mission__h">{{ section.settings.mission_title }}</h3>
+        <div class="rte">{{ section.settings.mission_rte }}</div>
+      </div>
+      <div class="ts-os-mission__card">
+        <h3 class="ts-os-mission__h">{{ section.settings.vision_title }}</h3>
+        <div class="rte">{{ section.settings.vision_rte }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ts-os-cacao ts-page-width">
+    <div class="ts-os-cacao__grid">
+      <div>
+        <p class="ts-os-intro__kicker">{{ section.settings.cacao_kicker }}</p>
+        <h2 class="ts-os-intro__title">{{ section.settings.cacao_title }}</h2>
+        <div class="rte ts-os-cacao__rte">{{ section.settings.cacao_rte }}</div>
+      </div>
+      <div class="ts-os-values">
+        {% for block in section.blocks %}
+          {% if block.type == 'value' %}
+            <div class="ts-os-value" {{ block.shopify_attributes }}>
+              <h4 class="ts-os-value__title">{{ block.settings.title }}</h4>
+              <p class="ts-os-value__text">{{ block.settings.text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="ts-os-process">
+    <div class="ts-page-width">
+      <div class="ts-os-process__head">
+        <p class="ts-os-process__kicker">{{ section.settings.process_kicker }}</p>
+        <h2 class="ts-os-process__title">{{ section.settings.process_title }}</h2>
+        <p class="ts-os-process__intro">{{ section.settings.process_intro }}</p>
+      </div>
+      <div class="ts-os-process__steps">
+        {% for block in section.blocks %}
+          {% if block.type == 'process' %}
+            <div class="ts-os-process__step" {{ block.shopify_attributes }}>
+              <div class="ts-os-process__badge">{{ block.settings.step }}</div>
+              <h4 class="ts-os-process__step-title">{{ block.settings.title }}</h4>
+              <p class="ts-os-process__step-desc">{{ block.settings.text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="ts-os-cta ts-page-width">
+    <h3 class="ts-os-cta__title">{{ section.settings.cta_title }}</h3>
+    <p class="ts-os-cta__text">{{ section.settings.cta_text }}</p>
+    <a class="ts-btn ts-btn--primary ts-os-cta__btn" href="{{ section.settings.cta_link | default: routes.root_url }}">
+      {{ section.settings.cta_label }}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+    </a>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Our story page",
+  "tag": "section",
+  "class": "section-ts-os-page",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "hero_image_alt", "label": "Hero image alt", "default": "Cacao farm Guatemala" },
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Est. 2026 · Guatemala" },
+    { "type": "text", "id": "hero_title", "label": "Hero title", "default": "Our Story" },
+    { "type": "textarea", "id": "hero_lead", "label": "Hero quote", "default": "\"Cacao is the language of the earth, spoken in flavor.\"" },
+    { "type": "text", "id": "intro_kicker", "label": "Intro kicker", "default": "Where We Come From" },
+    { "type": "text", "id": "intro_title", "label": "Intro title", "default": "Born in the Rainforest of Guatemala" },
+    { "type": "richtext", "id": "intro_rte", "label": "Origin story", "default": "<p>Cacao Senses is born in the tropical rainforest of Guatemala.</p>" },
+    { "type": "textarea", "id": "band_quote", "label": "Quote band text", "default": "\"The Mayans regarded cacao as sacred — a divine gift from the gods.\"" },
+    { "type": "text", "id": "band_sub", "label": "Quote band subline", "default": "Today, we continue that lineage with reverence, responsibility, and pride." },
+    { "type": "text", "id": "mission_title", "label": "Mission title", "default": "Our Mission" },
+    { "type": "richtext", "id": "mission_rte", "label": "Mission body", "default": "<p>To share the power, benefits, and sacred heritage of cacao with the world.</p>" },
+    { "type": "text", "id": "vision_title", "label": "Vision title", "default": "Our Vision" },
+    { "type": "richtext", "id": "vision_rte", "label": "Vision body", "default": "<p>To bring authentic, single-origin Guatemalan cacao to the world.</p>" },
+    { "type": "text", "id": "cacao_kicker", "label": "Cacao block kicker", "default": "Single Origin" },
+    { "type": "text", "id": "cacao_title", "label": "Cacao block title", "default": "Our Cacao" },
+    { "type": "richtext", "id": "cacao_rte", "label": "Cacao block body", "default": "<p>Our cacao is single origin, grown exclusively on our farm in Guatemala.</p>" },
+    { "type": "text", "id": "process_kicker", "label": "Process kicker", "default": "Seed to Product" },
+    { "type": "text", "id": "process_title", "label": "Process title", "default": "Our Process" },
+    { "type": "textarea", "id": "process_intro", "label": "Process intro", "default": "We follow a fully hands-on, small-batch process from seed to finished cacao." },
+    { "type": "text", "id": "cta_title", "label": "CTA title", "default": "Rooted in the Soil. Crafted by Nature. Shared by Us." },
+    { "type": "textarea", "id": "cta_text", "label": "CTA text", "default": "Discover our range of premium single-origin cacao products." },
+    { "type": "text", "id": "cta_label", "label": "CTA button", "default": "Shop Our Products" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Description." }
+      ]
+    },
+    {
+      "type": "process",
+      "name": "Process step",
+      "settings": [
+        { "type": "text", "id": "step", "label": "Step number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Step description." }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "Our story page",
+      "blocks": [
+        { "type": "value", "settings": { "title": "Rooted in Guatemala", "text": "Finca El Rosario Quesada — one of the oldest plantation homes in the region with over 200 years of history, near the ancient Mayan park Takalik Abaj." } },
+        { "type": "value", "settings": { "title": "7 Cacao Varieties", "text": "We cultivate seven different cacao varieties on the same land, allowing for biodiversity, resilience, and a layered flavor spectrum unique to our farm." } },
+        { "type": "value", "settings": { "title": "Zero Waste Process", "text": "Nothing is wasted. Leftover organic material is returned to the land as natural fertilizer, closing the cycle and nourishing future harvests." } },
+        { "type": "value", "settings": { "title": "Community Rooted", "text": "Our team comes from the local community — many are direct descendants of Mayan heritage, working in alignment with ancestral agricultural traditions." } },
+        { "type": "process", "settings": { "step": "01", "title": "Hand Germination", "text": "Each plant is germinated by hand with care and intention." } },
+        { "type": "process", "settings": { "step": "02", "title": "Individual Monitoring", "text": "Trees are grown and monitored individually throughout their lifecycle." } },
+        { "type": "process", "settings": { "step": "03", "title": "Hand-Harvested", "text": "Pods are hand-harvested at peak ripeness to ensure optimal flavor." } },
+        { "type": "process", "settings": { "step": "04", "title": "Manual Sorting", "text": "Fruit is opened and sorted manually, ensuring only the best beans proceed." } },
+        { "type": "process", "settings": { "step": "05", "title": "Custom Fermentation", "text": "Beans are processed using custom fermentation protocols refined through generations." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

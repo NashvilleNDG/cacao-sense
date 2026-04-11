@@ -1,0 +1,180 @@
+{% liquid
+  assign hero_img = section.settings.image
+  assign default_hero = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/0778a5f5c_generated_image.png'
+%}
+
+<section class="ts-hero">
+  <div class="ts-hero__bg">
+    {% if hero_img != blank %}
+      <img
+        src="{{ hero_img | image_url: width: 2400 }}"
+        alt="{{ hero_img.alt | default: section.settings.image_alt | escape }}"
+        width="{{ hero_img.width }}"
+        height="{{ hero_img.height }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {% else %}
+      <img src="{{ default_hero }}" alt="" width="1920" height="1080" loading="eager">
+    {% endif %}
+    <div class="ts-hero__gradient-t" aria-hidden="true"></div>
+    <div class="ts-hero__gradient-r" aria-hidden="true"></div>
+  </div>
+
+  <div class="ts-hero__content ts-page-width">
+    <div class="ts-hero__copy">
+      <div class="ts-hero__trust ts-glass">
+        <div class="ts-hero__stars">
+          {% for i in (1..5) %}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          {% endfor %}
+        </div>
+        <span>{{ section.settings.trust_text }}</span>
+      </div>
+
+      <p class="ts-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="ts-hero__title">
+        {{ section.settings.title_line_1 }}
+        <br>
+        <em class="ts-text-gradient-gold">{{ section.settings.title_line_2 }}</em>
+      </h1>
+      <p class="ts-hero__desc">{{ section.settings.description }}</p>
+
+      {% liquid
+        assign primary_href = section.settings.primary_link
+        if primary_href == blank
+          assign primary_href = routes.all_products_collection_url
+        endif
+        assign secondary_href = section.settings.secondary_link
+        if secondary_href == blank
+          assign secondary_href = routes.root_url | append: '#ts-story'
+        endif
+      %}
+      <div class="ts-hero__ctas">
+        <a class="ts-btn ts-btn--primary" href="{{ primary_href }}">
+          {{ section.settings.primary_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a class="ts-btn ts-btn--ghost" href="{{ secondary_href }}">{{ section.settings.secondary_label }}</a>
+      </div>
+
+      <div class="ts-hero__stats">
+        {% for block in section.blocks %}
+          {% if block.type == 'stat' %}
+            <div class="ts-hero__stat ts-glass" {{ block.shopify_attributes }}>
+              <p class="ts-hero__stat-value">{{ block.settings.value }}</p>
+              <p class="ts-hero__stat-label">{{ block.settings.label }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-ts-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image",
+      "info": "Optional — defaults to demo cocoa image."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Premium cocoa"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust badge text",
+      "default": "Trusted by 50,000+ customers"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Premium Cocoa Powder"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Heading line 1",
+      "default": "Pure Taste."
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Heading line 2 (gold)",
+      "default": "True Senses."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "From single-origin farms to your cup — 100% pure cocoa powder with no fillers, no additives. Just nature at its finest."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "100%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Pure Cocoa"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "100%", "label": "Pure Cocoa" } },
+        { "type": "stat", "settings": { "value": "50K+", "label": "Happy Customers" } },
+        { "type": "stat", "settings": { "value": "15+", "label": "Countries Shipped" } },
+        { "type": "stat", "settings": { "value": "4.9★", "label": "Average Rating" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

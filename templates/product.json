@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "ts-main-product",
+      "settings": {
+        "show_badge": true,
+        "badge_label": "Best seller",
+        "badge_without_tag": true,
+        "show_rating": true,
+        "rating_value": "4.9",
+        "review_count": "218",
+        "fallback_origin": "Guatemala",
+        "fallback_sizes": "8oz (227g)",
+        "tags_to_show": 6,
+        "trust_1": "100% Pure & Natural — No additives or preservatives",
+        "trust_2": "Single-Origin — Ethically sourced from certified farms",
+        "trust_3": "Free Shipping — On orders over $50"
+      }
+    }
+  },
+  "order": ["main"]
+}

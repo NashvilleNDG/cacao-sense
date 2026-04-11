@@ -1,0 +1,37 @@
+{% liquid
+  assign raw = section.settings.items | split: '\n'
+%}
+
+<div class="ts-marquee">
+  <div class="ts-marquee__track" aria-hidden="true">
+    {% for line in raw %}
+      {% assign item = line | strip %}
+      {% if item != '' %}
+        <span>{{ item | escape }}</span>
+      {% endif %}
+    {% endfor %}
+    {% for line in raw %}
+      {% assign item = line | strip %}
+      {% if item != '' %}
+        <span>{{ item | escape }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee strip",
+  "tag": "section",
+  "class": "section-ts-marquee",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "items",
+      "label": "Items (one per line)",
+      "default": "✦ 100% Pure Cocoa\n✦ Single-Origin Beans\n✦ Sustainably Farmed\n✦ Award Winning\n✦ Stone-Ground 72hrs\n✦ No Additives\n✦ Fair Trade Certified\n✦ Ships Worldwide"
+    }
+  ],
+  "presets": [{ "name": "Marquee strip" }]
+}
+{% endschema %}

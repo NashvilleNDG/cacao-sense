@@ -1,0 +1,58 @@
+<section class="ts-cart-page ts-page-width" style="padding:7rem 1.5rem 4rem;">
+  <h1 class="ts-products__title" style="margin-bottom:2rem;">{{ 'cart.title' | t }}</h1>
+  {% if cart.item_count == 0 %}
+    <p style="color:var(--ts-muted-fg);margin-bottom:1.5rem;">{{ 'cart.empty' | t }}</p>
+    <a href="{{ routes.all_products_collection_url }}" class="ts-btn ts-btn--primary">{{ 'cart.continue' | t }}</a>
+  {% else %}
+    {% form 'cart', cart %}
+      <div class="ts-cart__lines" style="display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2rem;">
+        {% for item in cart.items %}
+          <div
+            class="ts-cart__line"
+            style="display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1rem;border:1px solid var(--ts-border);border-radius:var(--ts-radius-lg);background:var(--ts-card);"
+          >
+            {% if item.image %}
+              <a href="{{ item.url }}" style="width:80px;height:80px;border-radius:0.75rem;overflow:hidden;display:block;">
+                <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.image.alt | escape }}" width="80" height="80" style="object-fit:cover;width:100%;height:100%;">
+              </a>
+            {% endif %}
+            <div>
+              <a href="{{ item.url }}" style="font-weight:600;color:inherit;text-decoration:none;">{{ item.product.title }}</a>
+              {% unless item.product.has_only_default_variant %}
+                <p style="font-size:0.875rem;color:var(--ts-muted-fg);margin:0.25rem 0 0;">{{ item.variant.title }}</p>
+              {% endunless %}
+              <input
+                type="number"
+                name="updates[{{ item.key }}]"
+                value="{{ item.quantity }}"
+                min="0"
+                aria-label="{{ 'cart.quantity' | t }}"
+                style="margin-top:0.5rem;max-width:5rem;padding:0.35rem;border:1px solid var(--ts-border);border-radius:0.35rem;"
+              >
+            </div>
+            <div style="text-align:right;">
+              <p style="font-weight:600;margin:0;">{{ item.final_line_price | money }}</p>
+              <a href="{{ item.url_to_remove }}" style="font-size:0.75rem;color:var(--ts-muted-fg);">{{ 'cart.remove' | t }}</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+        <button type="submit" name="update" class="ts-btn-outline">{{ 'cart.update' | t }}</button>
+        <p style="font-family:var(--ts-font-display);font-size:1.5rem;font-weight:700;margin:0;">
+          {{ 'cart.subtotal' | t }}: {{ cart.total_price | money }}
+        </p>
+        <button type="submit" name="checkout" class="ts-btn ts-btn--primary">{{ 'cart.checkout' | t }}</button>
+      </div>
+    {% endform %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "class": "section-ts-cart",
+  "settings": []
+}
+{% endschema %}

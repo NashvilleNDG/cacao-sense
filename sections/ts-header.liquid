@@ -1,0 +1,124 @@
+{% liquid
+  assign logo = section.settings.logo
+  assign logo_alt = section.settings.logo_alt | default: shop.name
+  assign default_logo = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/67f80ca1b_image.png'
+%}
+
+<header class="ts-header" data-ts-header>
+  <div class="ts-page-width">
+    <div class="ts-header__inner">
+      <a href="{{ routes.root_url }}" class="ts-header__logo">
+        {% if logo != blank %}
+          <img src="{{ logo | image_url: width: 400 }}" alt="{{ logo_alt | escape }}" width="{{ logo.width }}" height="{{ logo.height }}">
+        {% else %}
+          <img src="{{ default_logo }}" alt="{{ logo_alt | escape }}" width="200" height="56" loading="eager">
+        {% endif %}
+      </a>
+
+      <nav class="ts-header__nav-desktop" aria-label="{{ 'general.main_nav' | t }}">
+        {% if settings.main_menu != blank and linklists[settings.main_menu].links.size > 0 %}
+          {% for link in linklists[settings.main_menu].links %}
+            <a class="ts-header__link" href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          {% liquid
+            assign url_story = '/pages/our-story'
+            if pages['our-story'] != blank
+              assign url_story = pages['our-story'].url
+            endif
+            assign url_contact = '/pages/contact'
+            if pages['contact'] != blank
+              assign url_contact = pages['contact'].url
+            endif
+          %}
+          <a class="ts-header__link" href="{{ routes.root_url }}">{{ 'sections.header.home' | t }}</a>
+          <a class="ts-header__link" href="{{ url_story }}">{{ 'sections.header.story' | t }}</a>
+          <a class="ts-header__link" href="{{ routes.root_url }}#collections">{{ 'sections.header.collections' | t }}</a>
+          <a class="ts-header__link" href="{{ url_contact }}">{{ 'sections.header.contact' | t }}</a>
+        {% endif %}
+      </nav>
+
+      <div class="ts-header__actions">
+        <a
+          href="{{ routes.search_url }}"
+          class="ts-header__icon-btn ts-header__search"
+          aria-label="{{ 'general.search' | t }}"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="ts-header__icon-btn ts-header__cart-wrap" aria-label="{{ 'general.cart' | t }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M6 6h15l-1.5 9h-12z"></path>
+            <circle cx="9" cy="20" r="1"></circle>
+            <circle cx="18" cy="20" r="1"></circle>
+            <path d="M6 6 5 3H2"></path>
+          </svg>
+          {% if cart.item_count > 0 %}
+            <span class="ts-header__cart-badge">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+        <button
+          type="button"
+          class="ts-header__icon-btn ts-header__menu-toggle"
+          data-ts-nav-toggle
+          aria-expanded="false"
+          aria-controls="ts-mobile-nav"
+          aria-label="{{ 'general.menu' | t }}"
+        >
+          <svg class="ts-icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ts-mobile-nav" class="ts-header__mobile-panel" data-ts-nav-panel>
+    <div class="ts-page-width" style="padding-top:1rem;padding-bottom:1.5rem;">
+      {% if settings.main_menu != blank and linklists[settings.main_menu].links.size > 0 %}
+        {% for link in linklists[settings.main_menu].links %}
+          <a class="ts-header__mobile-link" href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        {% liquid
+          assign url_story = '/pages/our-story'
+          if pages['our-story'] != blank
+            assign url_story = pages['our-story'].url
+          endif
+          assign url_contact = '/pages/contact'
+          if pages['contact'] != blank
+            assign url_contact = pages['contact'].url
+          endif
+        %}
+        <a class="ts-header__mobile-link" href="{{ routes.root_url }}">{{ 'sections.header.home' | t }}</a>
+        <a class="ts-header__mobile-link" href="{{ url_story }}">{{ 'sections.header.story' | t }}</a>
+        <a class="ts-header__mobile-link" href="{{ routes.root_url }}#collections">{{ 'sections.header.collections' | t }}</a>
+        <a class="ts-header__mobile-link" href="{{ url_contact }}">{{ 'sections.header.contact' | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Optional. Defaults to True Senses asset URL if empty."
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "Cacao Senses"
+    }
+  ]
+}
+{% endschema %}

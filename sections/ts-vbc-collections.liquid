@@ -1,0 +1,219 @@
+<section id="collections" class="ts-vbc-collections">
+  <div class="ts-page-width">
+    <div class="ts-vbc-collections__head">
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h2 class="ts-products__title ts-vbc-collections__title">
+        {{ section.settings.title_prefix }}<em>{{ section.settings.title_accent }}</em>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="ts-vbc-collections__intro">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ts-vbc-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'tile' %}
+          {% liquid
+            assign img = block.settings.image
+            assign href = block.settings.link | default: routes.all_products_collection_url
+          %}
+          <a
+            href="{{ href }}"
+            class="ts-vbc-grid__item {% if block.settings.large %}ts-vbc-grid__item--hero{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {% if img != blank %}
+              <img
+                src="{{ img | image_url: width: 1200 }}"
+                alt="{{ img.alt | default: block.settings.title | escape }}"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                loading="lazy"
+              >
+            {% elsif block.settings.fallback_image_url != blank %}
+              <img src="{{ block.settings.fallback_image_url }}" alt="{{ block.settings.title | escape }}" width="800" height="600" loading="lazy">
+            {% endif %}
+            <span class="ts-bento__tag">{{ block.settings.tag }}</span>
+            <span class="ts-bento__arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17 17 7M7 7h10v10"></path>
+              </svg>
+            </span>
+            <div class="ts-bento__content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.subtitle }}</p>
+              <div class="ts-bento__cta">
+                <span>{{ block.settings.cta_label }}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M7 17 17 7M7 7h10v10"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Velvet collection grid",
+  "tag": "section",
+  "class": "section-ts-vbc-collections",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "title_prefix",
+      "label": "Title (plain part)",
+      "default": "Our "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title (accent)",
+      "default": "Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Each collection tells a unique story of terroir, craftsmanship and taste."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "large",
+          "label": "Large hero tile (2×2 on desktop)",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image_url",
+          "label": "Fallback image URL (if no image)",
+          "info": "Optional full https URL when no image is uploaded."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Badge",
+          "default": "Tag"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Short description"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Velvet collection grid",
+      "blocks": [
+        {
+          "type": "tile",
+          "settings": {
+            "large": true,
+            "tag": "Superfood",
+            "title": "Cacao Beans",
+            "subtitle": "Raw whole beans — the purest form of chocolate",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/b6e179db2_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "tag": "Baking Essentials",
+            "title": "Cacao Powder",
+            "subtitle": "Stone-ground pure cacao powder",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/27bf60b05_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "tag": "Pure & Natural",
+            "title": "Cacao Butter",
+            "subtitle": "Cold-pressed, food-grade cacao butter",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d16bebc9a_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "tag": "Indulge",
+            "title": "Cacao Wafers",
+            "subtitle": "Premium melting wafers for baking & snacking",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/44e05de1a_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "tag": "Superfood",
+            "title": "Cacao Nibs",
+            "subtitle": "Crunchy raw nibs, nature's chocolate chips",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/84225d9d9_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "large": false,
+            "tag": "Sip & Relax",
+            "title": "Cacao Tea",
+            "subtitle": "Cacao husk tea — rich, earthy & energizing",
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/cba85b745_generated_image.png",
+            "cta_label": "Shop Now"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

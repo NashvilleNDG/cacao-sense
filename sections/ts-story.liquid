@@ -1,0 +1,214 @@
+{% liquid
+  assign story_img = section.settings.image
+  assign default_story = 'https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/2a6809f9f_generated_35710a50.png'
+%}
+
+<section id="story" class="ts-story">
+  <div class="ts-story__blob-t" aria-hidden="true"></div>
+  <div class="ts-story__blob-b" aria-hidden="true"></div>
+  <div class="ts-page-width">
+    <div class="ts-story__grid">
+      <div class="ts-story__figure">
+        <div class="ts-story__figure-inner">
+          {% if story_img != blank %}
+            <img
+              src="{{ story_img | image_url: width: 1200 }}"
+              alt="{{ story_img.alt | default: section.settings.image_alt | escape }}"
+              width="{{ story_img.width }}"
+              height="{{ story_img.height }}"
+              loading="lazy"
+            >
+          {% else %}
+            <img src="{{ default_story }}" alt="" width="1200" height="800" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="ts-story__float ts-story__float--br ts-glass">
+          <p class="ts-story__float-val">{{ section.settings.float_1_value }}</p>
+          <p class="ts-story__float-label">{{ section.settings.float_1_label }}</p>
+        </div>
+        <div class="ts-story__float ts-story__float--tl ts-glass">
+          <p class="ts-story__float-val">{{ section.settings.float_2_value }}</p>
+          <p class="ts-story__float-label">{{ section.settings.float_2_label }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="ts-story__kicker">{{ section.settings.kicker }}</p>
+        <h2 class="ts-story__title">
+          {{ section.settings.title_line_1 }}
+          <br>
+          <em class="ts-text-gradient-gold">{{ section.settings.title_line_2 }}</em>
+        </h2>
+        <div class="ts-story__text rte">{{ section.settings.body }}</div>
+
+        <div class="ts-story__values">
+          {% for block in section.blocks %}
+            {% if block.type == 'value' %}
+              <div class="ts-story__value" {{ block.shopify_attributes }}>
+                <div class="ts-story__value-icon">
+                  {% render 'ts-story-icon', icon: block.settings.icon %}
+                </div>
+                <div>
+                  <h4>{{ block.settings.title }}</h4>
+                  <p>{{ block.settings.text }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.link_url != blank %}
+          <a class="ts-story__link" href="{{ section.settings.link_url }}">
+            {{ section.settings.link_label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Story",
+  "tag": "section",
+  "class": "section-ts-story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Optional — defaults to demo image."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Cocoa origin"
+    },
+    {
+      "type": "text",
+      "id": "float_1_value",
+      "label": "Floating stat 1 value",
+      "default": "127+"
+    },
+    {
+      "type": "text",
+      "id": "float_1_label",
+      "label": "Floating stat 1 label",
+      "default": "Years of Tradition"
+    },
+    {
+      "type": "text",
+      "id": "float_2_value",
+      "label": "Floating stat 2 value",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "float_2_label",
+      "label": "Floating stat 2 label",
+      "default": "Pure Cocoa"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Our Heritage"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1",
+      "default": "From Bean"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2",
+      "default": "to Bliss"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Born from a passion for purity, True Senses sources the finest cocoa beans directly from sustainable farms across Ghana, Ecuador &amp; Madagascar. Every batch of our premium cocoa powder is stone-ground and carefully crafted to preserve nature's extraordinary gift.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Read Our Full Story"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "award", "label": "Award" },
+            { "value": "heart", "label": "Heart" }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Sustainably Sourced"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Direct trade with cocoa farmers across Ghana, Ecuador & Madagascar."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "icon": "leaf",
+            "title": "Sustainably Sourced",
+            "text": "Direct trade with cocoa farmers across Ghana, Ecuador & Madagascar."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "award",
+            "title": "Award Winning",
+            "text": "Recognized by International Chocolate Awards for three consecutive years."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "title": "Made with Love",
+            "text": "Every batch is small-batch roasted and stone-ground for 72 hours."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,152 @@
+<section class="ts-usage-tips" id="usage-tips">
+  <div class="ts-page-width">
+    <div class="ts-usage-tips__head">
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h2 class="ts-products__title">
+        {{ section.settings.title_plain }}<em class="italic" style="color: var(--ts-accent);">{{ section.settings.title_accent }}</em>
+      </h2>
+      {% if section.settings.intro != blank %}
+        <p class="ts-usage-tips__intro">{{ section.settings.intro }}</p>
+      {% endif %}
+    </div>
+    <div class="ts-usage-tips__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'tip' %}
+          <article class="ts-usage-card" {{ block.shopify_attributes }}>
+            <div class="ts-usage-card__media">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  loading="lazy"
+                >
+              {% elsif block.settings.image_url != blank %}
+                <img src="{{ block.settings.image_url }}" alt="{{ block.settings.title | escape }}" width="600" height="450" loading="lazy">
+              {% endif %}
+              <span class="ts-usage-card__tag">{{ block.settings.tag }}</span>
+            </div>
+            <div class="ts-usage-card__body">
+              <div class="ts-usage-card__icon" aria-hidden="true">
+                {% case block.settings.icon %}
+                  {% when 'coffee' %}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                  {% when 'chef' %}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 13h12"></path><path d="M6 17h12"></path><path d="M12 3v4"></path><path d="M8 3v2"></path><path d="M16 3v2"></path></svg>
+                  {% when 'dumbbell' %}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.4 14.4 9.6 9.6M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path></svg>
+                  {% else %}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                {% endcase %}
+              </div>
+              <p class="ts-usage-card__product">{{ block.settings.product_line }}</p>
+              <h3 class="ts-usage-card__title">{{ block.settings.title }}</h3>
+              <p class="ts-usage-card__desc">{{ block.settings.text }}</p>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Usage tips",
+  "tag": "section",
+  "class": "section-ts-usage-tips",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Endless Possibilities"
+    },
+    {
+      "type": "text",
+      "id": "title_plain",
+      "label": "Title (plain)",
+      "default": "Ways to "
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title (accent)",
+      "default": "Use Cacao"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Our cacao products fit seamlessly into every part of your day — from morning rituals to evening indulgence."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tip",
+      "name": "Tip",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "coffee", "label": "Coffee / drink" },
+            { "value": "chef", "label": "Chef / bake" },
+            { "value": "dumbbell", "label": "Fitness" },
+            { "value": "sparkles", "label": "Sparkles / beauty" }
+          ],
+          "default": "coffee"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag pill",
+          "default": "Drink"
+        },
+        {
+          "type": "text",
+          "id": "product_line",
+          "label": "Product line",
+          "default": "Cacao Powder"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Description."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL (fallback)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Usage tips",
+      "blocks": [
+        { "type": "tip", "settings": { "icon": "coffee", "tag": "Drink", "product_line": "Cacao Powder", "title": "Morning Ritual", "text": "Blend 1–2 tbsp of cacao powder into warm oat milk with a touch of honey for a nourishing morning chocolate drink.", "image_url": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80" } },
+        { "type": "tip", "settings": { "icon": "chef", "tag": "Bake", "product_line": "Cacao Wafers & Nibs", "title": "Baking & Cooking", "text": "Melt cacao wafers for ganache or sprinkle nibs into granola, cookies, and smoothie bowls for a rich crunch.", "image_url": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" } },
+        { "type": "tip", "settings": { "icon": "dumbbell", "tag": "Snack", "product_line": "Cacao Beans", "title": "Post-Workout Fuel", "text": "Snack on whole cacao beans for a natural energy and magnesium hit that supports muscle recovery.", "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" } },
+        { "type": "tip", "settings": { "icon": "sparkles", "tag": "Beauty", "product_line": "Cacao Butter", "title": "Skincare & Beauty", "text": "Apply melted cacao butter directly to skin for deep moisturisation — nature's most luxurious body butter.", "image_url": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&q=80" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

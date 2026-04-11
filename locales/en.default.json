@@ -1,0 +1,96 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "cart": "Cart",
+    "search": "Search",
+    "menu": "Menu",
+    "main_nav": "Main navigation",
+    "wishlist": "Save to wishlist",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue shopping",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "update": "Update cart",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "view": "View product",
+    "save": "Save {{ amount }}",
+    "variant": "Variant",
+    "sold_out": "Sold out",
+    "choose_options": "Choose options",
+    "breadcrumb": "Breadcrumb",
+    "gallery_thumbs": "Product images",
+    "image_n": "Image {{ n }}",
+    "reviews_label": "reviews",
+    "origin": "Origin",
+    "available_sizes": "Available Sizes",
+    "qty_decrease": "Decrease quantity",
+    "qty_increase": "Increase quantity"
+  },
+  "sections": {
+    "header": {
+      "home": "Home",
+      "shop": "Shop",
+      "story": "Our Story",
+      "collections": "Collections",
+      "contact": "Contact",
+      "butter": "Butter",
+      "nibs": "Nibs",
+      "powder": "Powder",
+      "reviews": "Reviews"
+    },
+    "featured_products": {
+      "filters": "Filter products",
+      "filter_all": "All",
+      "filter_butter": "Butter",
+      "filter_nibs": "Nibs",
+      "filter_powder": "Powder",
+      "browse_catalog": "Browse catalog"
+    },
+    "footer": {
+      "shop": "Shop",
+      "company": "Company",
+      "quick_links": "Quick Links",
+      "support": "Support",
+      "all_products": "All products",
+      "contact_us": "Contact Us",
+      "faq": "FAQ",
+      "rights": "All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cacao_beans": "Cacao Beans",
+      "cacao_nibs": "Cacao Nibs",
+      "cacao_powder": "Cacao Powder",
+      "cacao_butter": "Cacao Butter",
+      "cacao_wafers": "Cacao Wafers",
+      "cacao_tea": "Cacao Tea"
+    },
+    "newsletter": {
+      "email_label": "Email address"
+    },
+    "contact": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send message",
+      "success": "Thanks for contacting us. We will get back to you soon."
+    }
+  }
+}
