@@ -1,10 +1,10 @@
 @echo off
-REM Always start Shopify CLI from this folder (must contain sections\, templates\, etc.)
+REM Shopify theme dev — always port 9293 (http://127.0.0.1:9293/)
 cd /d "%~dp0"
 echo Theme root: %CD%
+echo Preview: http://127.0.0.1:9293/
 echo.
-echo If you see EADDRINUSE on 9292, another theme dev is still running.
-echo Close that window, or run: shopify-dev-alt.cmd  (uses port 9293^)
+echo If port 9293 is busy, close the other terminal running theme dev, then run this again.
 echo.
 where shopify >nul 2>&1
 if errorlevel 1 (
@@ -12,4 +12,4 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-shopify theme dev
+shopify theme dev --port 9293
