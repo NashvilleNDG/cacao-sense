@@ -1,15 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "ts_hero": {
       "type": "ts-hero",
       "blocks": {
-        "stat_1": { "type": "stat", "settings": { "value": "100%", "label": "Pure Cacao" } },
-        "stat_2": { "type": "stat", "settings": { "value": "50K+", "label": "Happy Customers" } },
-        "stat_3": { "type": "stat", "settings": { "value": "15+", "label": "Countries Shipped" } },
-        "stat_4": { "type": "stat", "settings": { "value": "4.9★", "label": "Average Rating" } }
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Pure Cacao"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "50K+",
+            "label": "Happy Customers"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "15+",
+            "label": "Countries Shipped"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "4.9★",
+            "label": "Average Rating"
+          }
+        }
       },
-      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
       "settings": {
+        "image_alt": "Premium cocoa",
         "trust_text": "Trusted by 50,000+ customers",
         "eyebrow": "Premium Cacao Products",
         "title_line_1": "Nature's Purest",
@@ -30,9 +69,10 @@
     "ts_product_grid": {
       "type": "ts-product-grid",
       "settings": {
+        "collection": "frontpage",
         "products_to_show": 12,
         "kicker": "Full Range",
-        "title_line_1": "Complete Cacao ",
+        "title_line_1": "Complete Cacao",
         "title_line_2": "Collection",
         "subtitle": "From raw whole beans to refined cacao butter — every form of pure cacao you need, all in one place.",
         "empty_message": "Create a collection in Shopify (e.g. “All”) and assign it here in the theme editor to show your catalog."
@@ -66,8 +106,13 @@
           }
         }
       },
-      "block_order": ["val_1", "val_2", "val_3"],
+      "block_order": [
+        "val_1",
+        "val_2",
+        "val_3"
+      ],
       "settings": {
+        "image_alt": "Cocoa origin",
         "float_1_value": "127+",
         "float_1_label": "Years of Tradition",
         "float_2_value": "100%",
@@ -87,73 +132,86 @@
           "type": "tile",
           "settings": {
             "large": true,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/b6e179db2_generated_image.png",
             "tag": "Superfood",
             "title": "Cacao Beans",
             "subtitle": "Raw whole beans — the purest form of chocolate",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/b6e179db2_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         },
         "t2": {
           "type": "tile",
           "settings": {
             "large": false,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/27bf60b05_generated_image.png",
             "tag": "Baking Essentials",
             "title": "Cacao Powder",
             "subtitle": "Stone-ground pure cacao powder",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/27bf60b05_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         },
         "t3": {
           "type": "tile",
           "settings": {
             "large": false,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d16bebc9a_generated_image.png",
             "tag": "Pure & Natural",
             "title": "Cacao Butter",
             "subtitle": "Cold-pressed, food-grade cacao butter",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d16bebc9a_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         },
         "t4": {
           "type": "tile",
           "settings": {
             "large": false,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/44e05de1a_generated_image.png",
             "tag": "Indulge",
             "title": "Cacao Wafers",
             "subtitle": "Premium melting wafers for baking & snacking",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/44e05de1a_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         },
         "t5": {
           "type": "tile",
           "settings": {
             "large": false,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/84225d9d9_generated_image.png",
             "tag": "Superfood",
             "title": "Cacao Nibs",
             "subtitle": "Crunchy raw nibs, nature's chocolate chips",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/84225d9d9_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         },
         "t6": {
           "type": "tile",
           "settings": {
             "large": false,
+            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/cba85b745_generated_image.png",
             "tag": "Sip & Relax",
             "title": "Cacao Tea",
             "subtitle": "Cacao husk tea — rich, earthy & energizing",
-            "fallback_image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/cba85b745_generated_image.png",
-            "cta_label": "Shop Now"
+            "cta_label": "Shop Now",
+            "link": ""
           }
         }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+      ],
       "settings": {
         "kicker": "Explore",
-        "title_prefix": "Our ",
+        "title_prefix": "Our",
         "title_accent": "Collections",
         "subtitle": "Each collection tells a unique story of terroir, craftsmanship and taste."
       }
@@ -195,10 +253,14 @@
           }
         }
       },
-      "block_order": ["q1", "q2", "q3"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
       "settings": {
         "kicker": "Testimonials",
-        "title_plain": "What People ",
+        "title_plain": "What People",
         "title_accent": "Say",
         "rating_line": "4.9 out of 5 from 2,300+ reviews"
       }
@@ -206,17 +268,72 @@
     "ts_benefits": {
       "type": "ts-benefits",
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "icon": "zap", "tone": "amber", "title": "Natural Energy Boost", "text": "Cacao contains theobromine, a gentle stimulant that provides sustained energy without the crash of caffeine." } },
-        "b2": { "type": "benefit", "settings": { "icon": "heart", "tone": "rose", "title": "Heart Health", "text": "Rich in flavonoids that support cardiovascular health, improve circulation and lower blood pressure naturally." } },
-        "b3": { "type": "benefit", "settings": { "icon": "shield", "tone": "purple", "title": "Antioxidant Powerhouse", "text": "One of the highest antioxidant scores of any food on earth — 40× more than blueberries." } },
-        "b4": { "type": "benefit", "settings": { "icon": "leaf", "tone": "green", "title": "100% Pure & Natural", "text": "No additives, no preservatives, no fillers. Just pure cacao as nature intended, stone-ground for 72 hours." } },
-        "b5": { "type": "benefit", "settings": { "icon": "droplets", "tone": "blue", "title": "Magnesium Rich", "text": "Exceptional source of magnesium supporting muscle function, relaxation, and restful sleep." } },
-        "b6": { "type": "benefit", "settings": { "icon": "sun", "tone": "yellow", "title": "Mood Enhancement", "text": "Triggers release of serotonin and endorphins — nature's own mood-lifting superfood." } }
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "zap",
+            "tone": "amber",
+            "title": "Natural Energy Boost",
+            "text": "Cacao contains theobromine, a gentle stimulant that provides sustained energy without the crash of caffeine."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "tone": "rose",
+            "title": "Heart Health",
+            "text": "Rich in flavonoids that support cardiovascular health, improve circulation and lower blood pressure naturally."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "tone": "purple",
+            "title": "Antioxidant Powerhouse",
+            "text": "One of the highest antioxidant scores of any food on earth — 40× more than blueberries."
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "tone": "green",
+            "title": "100% Pure & Natural",
+            "text": "No additives, no preservatives, no fillers. Just pure cacao as nature intended, stone-ground for 72 hours."
+          }
+        },
+        "b5": {
+          "type": "benefit",
+          "settings": {
+            "icon": "droplets",
+            "tone": "blue",
+            "title": "Magnesium Rich",
+            "text": "Exceptional source of magnesium supporting muscle function, relaxation, and restful sleep."
+          }
+        },
+        "b6": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "tone": "yellow",
+            "title": "Mood Enhancement",
+            "text": "Triggers release of serotonin and endorphins — nature's own mood-lifting superfood."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ],
       "settings": {
         "kicker": "Why Cacao?",
-        "title_plain": "The Superfood ",
+        "title_plain": "The Superfood",
         "title_accent": "Benefits",
         "intro": "Cacao is one of the most nutrient-dense foods on the planet. Here's why thousands make it part of their daily ritual."
       }
@@ -224,15 +341,52 @@
     "ts_how_made": {
       "type": "ts-how-its-made",
       "blocks": {
-        "h1": { "type": "step", "settings": { "step_number": "01", "title": "Ethically Harvested", "text": "Ripe cacao pods are hand-picked by our farming partners in Ecuador, Ghana & Madagascar at peak perfection.", "image_url": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80" } },
-        "h2": { "type": "step", "settings": { "step_number": "02", "title": "Sun-Dried & Fermented", "text": "Beans ferment naturally for 5–7 days then slow-dry in the open sun, developing their complex flavor profile.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/f41d5c108_generated_image.png" } },
-        "h3": { "type": "step", "settings": { "step_number": "03", "title": "Stone-Ground 72 Hours", "text": "Using traditional granite millstones, we cold-grind each batch for 72 hours to preserve nutrients and aroma.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/1e4d08862_generated_image.png" } },
-        "h4": { "type": "step", "settings": { "step_number": "04", "title": "Packed & Shipped Fresh", "text": "Sealed in nitrogen-flushed bags to lock in freshness, then shipped directly to your door worldwide.", "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d5ad83e23_generated_image.png" } }
+        "h1": {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "title": "Ethically Harvested",
+            "text": "Ripe cacao pods are hand-picked by our farming partners in Ecuador, Ghana & Madagascar at peak perfection.",
+            "image_url": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80"
+          }
+        },
+        "h2": {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "title": "Sun-Dried & Fermented",
+            "text": "Beans ferment naturally for 5–7 days then slow-dry in the open sun, developing their complex flavor profile.",
+            "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/f41d5c108_generated_image.png"
+          }
+        },
+        "h3": {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "title": "Stone-Ground 72 Hours",
+            "text": "Using traditional granite millstones, we cold-grind each batch for 72 hours to preserve nutrients and aroma.",
+            "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/1e4d08862_generated_image.png"
+          }
+        },
+        "h4": {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "title": "Packed & Shipped Fresh",
+            "text": "Sealed in nitrogen-flushed bags to lock in freshness, then shipped directly to your door worldwide.",
+            "image_url": "https://media.base44.com/images/public/69d4488a5dfc8f6017add6a5/d5ad83e23_generated_image.png"
+          }
+        }
       },
-      "block_order": ["h1", "h2", "h3", "h4"],
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4"
+      ],
       "settings": {
         "kicker": "Our Process",
-        "title_plain": "From Farm to ",
+        "title_plain": "From Farm to",
         "title_accent": "Your Table",
         "intro": "Every step is guided by a single principle: zero compromise on purity."
       }
@@ -240,15 +394,60 @@
     "ts_usage_tips": {
       "type": "ts-usage-tips",
       "blocks": {
-        "u1": { "type": "tip", "settings": { "icon": "coffee", "tag": "Drink", "product_line": "Cacao Powder", "title": "Morning Ritual", "text": "Blend 1–2 tbsp of cacao powder into warm oat milk with a touch of honey for a nourishing morning chocolate drink.", "image_url": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80" } },
-        "u2": { "type": "tip", "settings": { "icon": "chef", "tag": "Bake", "product_line": "Cacao Wafers & Nibs", "title": "Baking & Cooking", "text": "Melt cacao wafers for ganache or sprinkle nibs into granola, cookies, and smoothie bowls for a rich crunch.", "image_url": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" } },
-        "u3": { "type": "tip", "settings": { "icon": "dumbbell", "tag": "Snack", "product_line": "Cacao Beans", "title": "Post-Workout Fuel", "text": "Snack on whole cacao beans for a natural energy and magnesium hit that supports muscle recovery.", "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" } },
-        "u4": { "type": "tip", "settings": { "icon": "sparkles", "tag": "Beauty", "product_line": "Cacao Butter", "title": "Skincare & Beauty", "text": "Apply melted cacao butter directly to skin for deep moisturisation — nature's most luxurious body butter.", "image_url": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&q=80" } }
+        "u1": {
+          "type": "tip",
+          "settings": {
+            "icon": "coffee",
+            "tag": "Drink",
+            "product_line": "Cacao Powder",
+            "title": "Morning Ritual",
+            "text": "Blend 1–2 tbsp of cacao powder into warm oat milk with a touch of honey for a nourishing morning chocolate drink.",
+            "image_url": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80"
+          }
+        },
+        "u2": {
+          "type": "tip",
+          "settings": {
+            "icon": "chef",
+            "tag": "Bake",
+            "product_line": "Cacao Wafers & Nibs",
+            "title": "Baking & Cooking",
+            "text": "Melt cacao wafers for ganache or sprinkle nibs into granola, cookies, and smoothie bowls for a rich crunch.",
+            "image_url": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80"
+          }
+        },
+        "u3": {
+          "type": "tip",
+          "settings": {
+            "icon": "dumbbell",
+            "tag": "Snack",
+            "product_line": "Cacao Beans",
+            "title": "Post-Workout Fuel",
+            "text": "Snack on whole cacao beans for a natural energy and magnesium hit that supports muscle recovery.",
+            "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
+          }
+        },
+        "u4": {
+          "type": "tip",
+          "settings": {
+            "icon": "sparkles",
+            "tag": "Beauty",
+            "product_line": "Cacao Butter",
+            "title": "Skincare & Beauty",
+            "text": "Apply melted cacao butter directly to skin for deep moisturisation — nature's most luxurious body butter.",
+            "image_url": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&q=80"
+          }
+        }
       },
-      "block_order": ["u1", "u2", "u3", "u4"],
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
       "settings": {
         "kicker": "Endless Possibilities",
-        "title_plain": "Ways to ",
+        "title_plain": "Ways to",
         "title_accent": "Use Cacao",
         "intro": "Our cacao products fit seamlessly into every part of your day — from morning rituals to evening indulgence."
       }
@@ -257,7 +456,7 @@
       "type": "ts-newsletter",
       "settings": {
         "kicker": "Stay Connected",
-        "title_plain": "Join the ",
+        "title_plain": "Join the",
         "title_accent": "Inner Circle",
         "text": "Get 10% off your first order, exclusive drops, and stories from the world of premium cocoa.",
         "placeholder": "Enter your email address",
