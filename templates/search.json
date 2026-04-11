@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "ts-main-search",
+      "settings": {
+        "kicker": "Search",
+        "title_prefix": "Results for",
+        "title_empty": "Search our store",
+        "intro_empty": "Enter a search term below.",
+        "no_results": "No products matched your search. Try another keyword.",
+        "results_per_page": 24
+      }
+    }
+  },
+  "order": ["main"]
+}

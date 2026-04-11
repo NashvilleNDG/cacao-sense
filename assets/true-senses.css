@@ -2107,6 +2107,78 @@ body:not(.template-index) .ts-header:not(.ts-header--scrolled) .ts-header__mobil
   margin-top: 0.1rem;
 }
 
+/* ----- Search results ----- */
+.ts-search-page {
+  padding-top: clamp(7.5rem, 6rem + 5vw, 10.5rem);
+  padding-bottom: clamp(5rem, 7vw, 8.5rem);
+}
+
+@media (min-width: 768px) {
+  .ts-search-page {
+    padding-top: clamp(8.5rem, 7rem + 4vw, 11.5rem);
+    padding-bottom: clamp(6rem, 9vw, 9.5rem);
+  }
+}
+
+.ts-search-page__head {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.ts-search-page__meta {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--ts-muted-fg);
+}
+
+.ts-search-page__empty {
+  max-width: 32rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.ts-search-page__empty > p {
+  color: var(--ts-muted-fg);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.ts-search-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 480px) {
+  .ts-search-page__form {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 28rem;
+    margin: 0 auto;
+  }
+}
+
+.ts-search-page__input {
+  flex: 1;
+  min-width: 0;
+  height: 3.25rem;
+  padding: 0 1.25rem;
+  border-radius: var(--ts-radius-full);
+  border: 1px solid var(--ts-border);
+  font-size: 1rem;
+  font-family: var(--ts-font-body);
+}
+
+.ts-search-page__pagination {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* --- Velvet Bean Craft / Cacao Senses homepage sections --- */
 
 .ts-vbc-all-products {

@@ -12,6 +12,12 @@
     "pagination": {
       "previous": "Previous",
       "next": "Next"
+    },
+    "pagination_nav": "Pagination"
+  },
+  "templates": {
+    "search": {
+      "results_count": "{{ count }} results"
     }
   },
   "cart": {

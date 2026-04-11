@@ -1,0 +1,115 @@
+{% liquid
+  assign per_page = section.settings.results_per_page | default: 24
+%}
+
+<section class="ts-search-page ts-page-width">
+  <header class="ts-search-page__head">
+    {% if search.performed %}
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h1 class="ts-products__title">
+        {{ section.settings.title_prefix }}
+        {% if search.terms != blank %}
+          <em class="ts-text-gradient-gold"> {{ search.terms | escape }}</em>
+        {% endif %}
+      </h1>
+      {% if search.results_count > 0 %}
+        <p class="ts-search-page__meta">
+          {{ 'templates.search.results_count' | t: count: search.results_count }}
+        </p>
+      {% endif %}
+    {% else %}
+      <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
+      <h1 class="ts-products__title">{{ section.settings.title_empty }}</h1>
+      <p class="ts-search-page__meta">{{ section.settings.intro_empty }}</p>
+    {% endif %}
+  </header>
+
+  {% if search.performed %}
+    {% if search.results_count > 0 %}
+      {% paginate search.results by per_page %}
+        <div class="ts-products__grid">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'ts-product-card', product: item %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="ts-pagination ts-search-page__pagination" aria-label="{{ 'general.pagination_nav' | t }}">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}" class="ts-btn-outline">{{ 'general.pagination.previous' | t }}</a>
+            {% endif %}
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}" class="ts-btn-outline">{{ 'general.pagination.next' | t }}</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <div class="ts-search-page__empty">
+        <p>{{ section.settings.no_results }}</p>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="ts-search-page__form">
+          <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}" class="ts-search-page__input" aria-label="{{ 'general.search' | t }}">
+          <button type="submit" class="ts-btn ts-btn--primary">{{ 'general.search' | t }}</button>
+        </form>
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="ts-search-page__empty">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="ts-search-page__form">
+        <input type="search" name="q" placeholder="{{ 'general.search' | t }}" class="ts-search-page__input" aria-label="{{ 'general.search' | t }}">
+        <button type="submit" class="ts-btn ts-btn--primary">{{ 'general.search' | t }}</button>
+      </form>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Search results",
+  "tag": "section",
+  "class": "section-ts-search",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Search"
+    },
+    {
+      "type": "text",
+      "id": "title_prefix",
+      "label": "Title before search terms",
+      "default": "Results for"
+    },
+    {
+      "type": "text",
+      "id": "title_empty",
+      "label": "Title when no query",
+      "default": "Search our store"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_empty",
+      "label": "Intro when no query",
+      "default": "Enter a search term below."
+    },
+    {
+      "type": "textarea",
+      "id": "no_results",
+      "label": "No results message",
+      "default": "No products matched your search. Try another keyword."
+    },
+    {
+      "type": "range",
+      "id": "results_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "label": "Results per page",
+      "default": 24
+    }
+  ]
+}
+{% endschema %}
