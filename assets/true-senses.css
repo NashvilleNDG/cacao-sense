@@ -1414,7 +1414,7 @@ body:not(.template-index) .ts-header:not(.ts-header--scrolled) .ts-header__mobil
 /* ----- Newsletter ----- */
 .ts-newsletter-wrap {
   padding: 6rem 0;
-  background: #7c3419;
+  background: transparent;
 }
 
 @media (min-width: 768px) {
