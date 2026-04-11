@@ -149,7 +149,7 @@
             "title": "Cacao Powder",
             "subtitle": "Stone-ground pure cacao powder",
             "cta_label": "Shop Now",
-            "link": ""
+            "link": "shopify://products/cacao-powder"
           }
         },
         "t3": {
@@ -173,7 +173,7 @@
             "title": "Cacao Wafers",
             "subtitle": "Premium melting wafers for baking & snacking",
             "cta_label": "Shop Now",
-            "link": ""
+            "link": "shopify://products/cacao-wafers"
           }
         },
         "t5": {
