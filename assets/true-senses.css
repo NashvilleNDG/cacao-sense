@@ -127,7 +127,8 @@ body.ts-body {
   transition: filter 0.5s;
 }
 
-.ts-header:not(.ts-header--scrolled) .ts-header__logo img {
+/* Logo: natural colors on inner pages (product, collection, cart, pages, etc.) */
+.template-index .ts-header:not(.ts-header--scrolled) .ts-header__logo img {
   filter: brightness(0) invert(1);
 }
 
@@ -149,7 +150,7 @@ body.ts-body {
   letter-spacing: 0.02em;
   text-decoration: none;
   position: relative;
-  color: rgba(255, 255, 255, 0.85);
+  color: color-mix(in srgb, var(--ts-fg) 72%, transparent);
   transition: color 0.3s;
 }
 
@@ -158,11 +159,20 @@ body.ts-body {
 }
 
 .ts-header__link:hover {
-  color: #fff;
+  color: var(--ts-fg);
 }
 
 .ts-header--scrolled .ts-header__link:hover {
   color: var(--ts-fg);
+}
+
+/* Homepage hero only: light nav over dark imagery */
+.template-index .ts-header:not(.ts-header--scrolled) .ts-header__link {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.template-index .ts-header:not(.ts-header--scrolled) .ts-header__link:hover {
+  color: #fff;
 }
 
 .ts-header__link::after {
@@ -195,18 +205,26 @@ body.ts-body {
   border: none;
   border-radius: var(--ts-radius-full);
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  color: color-mix(in srgb, var(--ts-fg) 62%, transparent);
   cursor: pointer;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
 
 .ts-header__icon-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--ts-fg) 8%, transparent);
 }
 
 .ts-header--scrolled .ts-header__icon-btn {
   color: color-mix(in srgb, var(--ts-fg) 60%, transparent);
+}
+
+.template-index .ts-header:not(.ts-header--scrolled) .ts-header__icon-btn {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.template-index .ts-header:not(.ts-header--scrolled) .ts-header__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .ts-header__cart-wrap {
