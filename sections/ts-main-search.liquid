@@ -7,10 +7,7 @@
     {% if search.performed %}
       <p class="ts-products__kicker">{{ section.settings.kicker }}</p>
       <h1 class="ts-products__title">
-        {{ section.settings.title_prefix }}
-        {% if search.terms != blank %}
-          <em class="ts-text-gradient-gold"> {{ search.terms | escape }}</em>
-        {% endif %}
+        {{ section.settings.title_prefix }}{% if search.terms != blank %} <em class="ts-text-gradient-gold">{{ search.terms | escape }}</em>{% endif %}
       </h1>
       {% if search.results_count > 0 %}
         <p class="ts-search-page__meta">
