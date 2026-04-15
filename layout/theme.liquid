@@ -9,8 +9,8 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- else -%}
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ 'logo.png' | asset_url }}">
-      <link rel="apple-touch-icon" href="{{ 'logo.png' | asset_url }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ 'logo-sharing.png' | asset_url }}">
+      <link rel="apple-touch-icon" href="{{ 'logo-sharing.png' | asset_url }}">
     {%- endif -%}
 
     <title>
@@ -25,7 +25,7 @@
     {% endif %}
 
     {%- liquid
-      assign og_image = 'logo.png' | asset_url
+      assign og_image = 'logo-sharing.png' | asset_url
       capture og_title
         echo page_title
         if current_tags
