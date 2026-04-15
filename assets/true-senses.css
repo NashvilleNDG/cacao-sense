@@ -577,6 +577,12 @@ body.template-index #MainContent > .shopify-section:first-child .ts-hero .ts-her
   color: #fff;
 }
 
+/* Keep hero CTA static on hover */
+.ts-hero .ts-btn--primary:hover {
+  background: var(--ts-accent);
+  color: #fff;
+}
+
 .ts-btn--ghost {
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -3382,6 +3388,60 @@ body.template-index #MainContent > .shopify-section:first-child .ts-hero .ts-her
     text-align: center;
   }
 
+}
+
+/* Fixed “back to top” (all pages) */
+.ts-scroll-top {
+  position: fixed;
+  z-index: 9990;
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #058181;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease,
+    background 0.2s ease;
+}
+
+.ts-scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.ts-scroll-top:not(.is-visible) {
+  pointer-events: none;
+}
+
+.ts-scroll-top:hover {
+  background: #046f6f;
+}
+
+.ts-scroll-top:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-scroll-top {
+    transition: none;
+  }
 }
 
 

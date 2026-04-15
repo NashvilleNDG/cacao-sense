@@ -31,7 +31,8 @@
     "checkout": "Checkout"
   },
   "accessibility": {
-    "skip_to_text": "Skip to content"
+    "skip_to_text": "Skip to content",
+    "back_to_top": "Back to top"
   },
   "products": {
     "add_to_cart": "Add to Cart",

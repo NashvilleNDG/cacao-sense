@@ -9,6 +9,49 @@
   if pages['contact'] != blank
     assign url_contact = pages['contact'].url
   endif
+
+  # Product handles match homepage featured tiles (templates/index.json)
+  assign p_beans = all_products['cacao-beans']
+  if p_beans != blank
+    assign url_shop_beans = p_beans.url
+  else
+    assign url_shop_beans = '/products/cacao-beans'
+  endif
+  assign p_nibs = all_products['cacao-nibs']
+  if p_nibs != blank
+    assign url_shop_nibs = p_nibs.url
+  else
+    assign url_shop_nibs = '/products/cacao-nibs'
+  endif
+  assign p_powder = all_products['cacao-powder']
+  if p_powder != blank
+    assign url_shop_powder = p_powder.url
+  else
+    assign url_shop_powder = '/products/cacao-powder'
+  endif
+  assign p_butter = all_products['cacao-butter']
+  if p_butter != blank
+    assign url_shop_butter = p_butter.url
+  else
+    assign url_shop_butter = '/products/cacao-butter'
+  endif
+  assign p_wafers = all_products['cacao-wafers']
+  if p_wafers != blank
+    assign url_shop_wafers = p_wafers.url
+  else
+    assign url_shop_wafers = '/products/cacao-wafers'
+  endif
+  assign p_tea = all_products['cacao-tea']
+  if p_tea != blank
+    assign url_shop_tea = p_tea.url
+  else
+    assign url_shop_tea = '/products/cacao-tea'
+  endif
+
+  assign shop_heading = 'sections.footer.shop' | t
+  if section.settings.menu_shop != blank and linklists[section.settings.menu_shop].title != blank
+    assign shop_heading = linklists[section.settings.menu_shop].title
+  endif
 %}
 
 <footer class="ts-footer">
@@ -57,29 +100,18 @@
         </div>
       </div>
 
-      {% if section.settings.menu_shop != blank and linklists[section.settings.menu_shop].links.size > 0 %}
-        <div class="ts-footer__col">
-          <h4>{{ linklists[section.settings.menu_shop].title }}</h4>
-          <ul>
-            {% for link in linklists[section.settings.menu_shop].links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% else %}
-        <div class="ts-footer__col">
-          <h4>{{ 'sections.footer.shop' | t }}</h4>
-          <ul>
-            <li><a href="{{ routes.all_products_collection_url }}">{{ 'sections.footer.all_products' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_beans' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_nibs' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_powder' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_butter' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_wafers' | t }}</a></li>
-            <li><a href="{{ routes.root_url }}#collections">{{ 'sections.footer.cacao_tea' | t }}</a></li>
-          </ul>
-        </div>
-      {% endif %}
+      <div class="ts-footer__col">
+        <h4>{{ shop_heading }}</h4>
+        <ul>
+          <li><a href="{{ routes.all_products_collection_url }}">{{ 'sections.footer.all_products' | t }}</a></li>
+          <li><a href="{{ url_shop_beans }}">{{ 'sections.footer.cacao_beans' | t }}</a></li>
+          <li><a href="{{ url_shop_nibs }}">{{ 'sections.footer.cacao_nibs' | t }}</a></li>
+          <li><a href="{{ url_shop_powder }}">{{ 'sections.footer.cacao_powder' | t }}</a></li>
+          <li><a href="{{ url_shop_butter }}">{{ 'sections.footer.cacao_butter' | t }}</a></li>
+          <li><a href="{{ url_shop_wafers }}">{{ 'sections.footer.cacao_wafers' | t }}</a></li>
+          <li><a href="{{ url_shop_tea }}">{{ 'sections.footer.cacao_tea' | t }}</a></li>
+        </ul>
+      </div>
 
       {% if section.settings.menu_company != blank and linklists[section.settings.menu_company].links.size > 0 %}
         <div class="ts-footer__col">
@@ -182,7 +214,8 @@
     {
       "type": "link_list",
       "id": "menu_shop",
-      "label": "Shop menu"
+      "label": "Shop column title",
+      "info": "Only the menu name is used for the heading. Product links are set automatically."
     },
     {
       "type": "link_list",
