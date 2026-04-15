@@ -1733,8 +1733,11 @@ body.template-index #MainContent > .shopify-section:first-child .ts-hero .ts-her
   font-family: var(--ts-font-display);
   font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin: 0 0 1.25rem;
+  /* Same gold as newsletter “Stay Connected” (.ts-hero__eyebrow) */
+  color: #fbbf24;
 }
 
 .ts-footer__col ul {
